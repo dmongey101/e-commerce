@@ -14,14 +14,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.static import serve
+from django.conf import settings
 from accounts.views import signup, show_profile
-from products.views import product_list
+from products.views import product_list, show_product
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', product_list, name='home'),
+    path('product/<int:id>', show_product, name='product'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile', show_profile, name='profile'),
     path('accounts/signup/', signup, name='signup'),
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
     
 ]
