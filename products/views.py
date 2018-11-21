@@ -5,7 +5,7 @@ from products.models import Product
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, "products/index.html", {"products" : products})
+    return render(request, "products/product_list.html", {"products" : products})
     
 def show_product(request, id):
     product = get_object_or_404(Product, pk=id)

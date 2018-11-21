@@ -42,10 +42,32 @@
                         <li><a href="{% url 'signup' %}"><i class="fa fa-user-plus"></i> Sign up</a></li>
                         <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
                     {% endif %}
+                        <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart                        {% if items_in_cart > 0 %}
+                        <label class="badge badge-light">{{ items_in_cart }}</label>{% endif %}</a>
+                        </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    {% if messages %}
+        <div class="alert alert-success">
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <div class="container">
+        <div class="display">
+            <form action="{% url 'search' %}" method="GET">
+                <input type="text" name="q">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    
     
     {% if messages %}
         <div class="alert alert-success">

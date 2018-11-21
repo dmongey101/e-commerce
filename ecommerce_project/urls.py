@@ -18,11 +18,20 @@ from django.views.static import serve
 from django.conf import settings
 from accounts.views import signup, show_profile
 from products.views import product_list, show_product
+from cart.views import add_to_cart, remove_from_cart, view_cart
+from checkout.views import checkout
+from search import urls as urls_search
+from checkout import urls as urls_checkout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', include(urls_search)),
     path('', product_list, name='home'),
     path('product/<int:id>', show_product, name='product'),
+    path('cart/add/<int:id>', add_to_cart, name="add_to_cart"),
+    path('cart/remove/', remove_from_cart, name='remove_from_cart'),
+    path('cart/view/', view_cart, name='cart'),
+    path('checkout/', include(urls_checkout)),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile', show_profile, name='profile'),
     path('accounts/signup/', signup, name='signup'),
