@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 from django.db import models
@@ -13,7 +14,7 @@ class Order(models.Model):
     street_address_1 = models.CharField(max_length=40, blank=False)
     street_address_2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
-    date = models.DateField()
+    date = models.DateTimeField(blank=True, null=True, default=timezone.now)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)

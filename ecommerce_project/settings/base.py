@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cart',
     'search',
     'checkout',
+    'reviews',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,8 @@ USE_TZ = True
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
